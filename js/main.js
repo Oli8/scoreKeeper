@@ -57,7 +57,7 @@ new Vue({
         },
 
         filterHistory: function(v) {
-            if (this.historyName)
+            if(this.historyName)
                 return v.substr(0, this.historyName.length) === this.historyName;
             return v;
         },
