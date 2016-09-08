@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+	<main>
+		<label for="newPlayer">Add a player : </label>
+		<input id="newPlayer" type="text" v-model="name" v-on:keyup.enter="addPlayer()" autofocus>
+		<button v-on:click="addPlayer()">Add</button><br/>
+		
+		<label for="step">Step : </label>
+		<input id="step" type="number" v-model="step" value="{{step}}">
+
+		<div v-for="player in players" transition="fade">
+			<template v-if="$index+1 < 4">
+				<span class="rank{{$index+1}}"> {{ $index+1 | rank }} </span>
+			</template>
+			<template v-else> {{ $index+1 | rank }} </template>
+			| {{ player.name | capitalize }}  : {{ player.points }}
+			<button v-on:click="addPoints($index)"> + </button> 
+			<button v-on:click="reducePoints($index)"> - </button> 
+			<button v-on:click="resetScore($index)"> Reset </button>
+			<button v-on:click="removePlayer($index)"> Remove </button>
+		</div>
+
+		<div>
+			<button v-on:click="resetAllScore()"> Reset scores </button>
+			<button v-on:click="reset()"> Reset all </button>
+		</div>
+
+		<h4  v-show="history.length">Game's History</h4>
+		<ul id="history">
+			<li v-for="action in history | filterBy filterHistory" track-by="$index">{{ action | capitalize }}</li>
+		</ul>
+
+		<select v-show="players.length" v-model="historyName">
+			<option value="" selected>All</option>
+			<option v-for="player in players" value="{{ player.name }}">{{ player.name | capitalize }}</option>
+		</select>
+	</main>
+
+	<script type="text/javascript" src="js/vue.js"></script>
+	<script type="text/javascript" src="js/vue-animated-list.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>

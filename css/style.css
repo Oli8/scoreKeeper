@@ -1,0 +1,14 @@
+#history{
+	height: auto;
+  	max-height: 180px;
+  	overflow: auto;
+}
+.fade-transition{
+  	transition: all 0.5s;
+  	opacity: 1;
+}
+.fade-enter, .fade-leave{ opacity: 0;}
+.fade-move{transition: transform 0.5s cubic-bezier(.55,0,.1,1);}
+.rank1{color: #FFD700;}
+.rank2{color: #C0C0C0;}
+.rank3{color: #CD7F32;}
