@@ -11,10 +11,11 @@ new Vue({
     methods: {
         addPlayer: function() {
             this.playerCount++;
-            var name = this.name || 'player' + this.playerCount
+            var name = this.name || 'player' + this.playerCount;
             this.players.push({name: name, points: 0});
             this.addHistory(name + ' has join the game.');
             this.name = '';
+            this.updateRank();
         },
 
         removePlayer: function(index) {
@@ -25,19 +26,19 @@ new Vue({
         addPoints: function(index) {
             this.addHistory(this.players[index].name + ' has won ' + this.step + ' points');
             this.players[index].points += parseInt(this.step);
-            setTimeout(this.sortRank, 2000);
+            this.updateRank();
         },
 
         reducePoints: function(index) {
             this.addHistory(this.players[index].name + ' has lost ' + this.step + ' points.');
             this.players[index].points -= parseInt(this.step);
-            setTimeout(this.sortRank, 2000);
+            this.updateRank();
         },
 
         resetScore: function(index) {
             this.players[index].points = 0;
             this.addHistory(this.players[index].name + "'s score has been reseted.");
-            setTimeout(this.sortRank, 2000);
+            this.updateRank();
         },
 
         resetAllScore: function() {
@@ -62,6 +63,12 @@ new Vue({
             return v;
         },
 
+        updateRank: function() {
+            for(var i=window.setTimeout(function(){}, 0); i>0; i--)
+                window.clearTimeout(i);
+            setTimeout(this.sortRank, 1500);
+        },
+
         sortRank: function() {
             this.players.sort(function(a, b) {
                 return a.points < b.points;
@@ -71,7 +78,7 @@ new Vue({
     filters: {
         rank: function(v) {
             v = '' + v;
-            if (['11', '12', '13'].indexOf(v.substr(-2)) !== -1)
+            if(['11', '12', '13'].indexOf(v.substr(-2)) !== -1)
                 return v + 'th';
             return v + ({1: 'st',2: 'nd',3: 'rd'}[v.substr(-1)] || 'th');
         }
