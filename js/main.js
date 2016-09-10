@@ -1,5 +1,5 @@
 new Vue({
-    el: 'main',
+    el: '.main',
     data: {
         step: 10,
         name: '',
