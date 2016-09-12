@@ -4,15 +4,20 @@ new Vue({
         step: 10,
         name: '',
         players: [],
-        playerCount: 0,
+        playerCount: 1,
         history: [],
-        historyName: ''
+        historyName: '',
+        warning: ''
     },
     methods: {
         addPlayer: function() {
-            this.playerCount++;
             var name = this.name || 'player' + this.playerCount;
-            this.players.push({name: name, points: 0});
+            for(var v of this.players)
+                if(v.name == name.toLowerCase())
+                    return this.warning = 'This name is not available.';
+            this.warning = '';
+            this.playerCount++;
+            this.players.push({name: name.toLowerCase(), points: 0});
             this.addHistory(name + ' has join the game.');
             this.name = '';
             this.updateRank();

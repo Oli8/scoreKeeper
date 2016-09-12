@@ -35,6 +35,9 @@
 	</nav>
 
 	<div class="container main">
+		<div class="alert alert-warning" v-show="warning" transition="fade">
+			<span class="glyphicon glyphicon-warning-sign"></span> {{ warning }}
+		</div>
 		<label for="newPlayer">Add a player : </label>
 		<input id="newPlayer" type="text" v-model="name" v-on:keyup.enter="addPlayer()" autofocus>
 		<button v-on:click="addPlayer()">Add</button><br/>
