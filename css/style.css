@@ -2,6 +2,9 @@
 	text-align: center;
 	margin-top: 100px;
 }
+#step{width: 173px;}
+table{text-align: left;}
+td{vertical-align: middle !important;}
 #history{
 	height: auto;
   	max-height: 180px;
