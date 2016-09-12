@@ -62,21 +62,21 @@
 			<button v-on:click="reset()"> Reset all </button>
 		</div>
 
-		<h4  v-show="history.length">Game's History</h4>
+		<h4 v-show="history.length">Game's History</h4>
 		<ul id="history">
 			<li v-for="action in history | filterBy filterHistory" track-by="$index">{{ action | capitalize }}</li>
 		</ul>
 
 		<select v-show="players.length" v-model="historyName">
 			<option value="" selected>All</option>
-			<option v-for="player in players" value="{{ player.name }}">{{ player.name | capitalize }}</option>
+			<option v-for="player in players" value="{{player.name}}">{{ player.name | capitalize }}</option>
 		</select>
 	</div>
 
 	<script type="text/javascript" src="js/vue.js"></script>
 	<script type="text/javascript" src="js/vue-animated-list.js"></script>
 	<script type="text/javascript" src="js/main.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 </body>
 </html>
