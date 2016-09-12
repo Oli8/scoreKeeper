@@ -87,5 +87,5 @@ new Vue({
                 return v + 'th';
             return v + ({1: 'st',2: 'nd',3: 'rd'}[v.substr(-1)] || 'th');
         }
-    },
+    }
 });
