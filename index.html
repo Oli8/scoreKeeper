@@ -40,26 +40,42 @@
 		</div>
 		<label for="newPlayer">Add a player : </label>
 		<input id="newPlayer" type="text" v-model="name" v-on:keyup.enter="addPlayer()" autofocus>
-		<button v-on:click="addPlayer()">Add</button><br/>
+		<button v-on:click="addPlayer()" class="btn btn-default">Add</button><br/>
 		
 		<label for="step">Step : </label>
 		<input id="step" type="number" v-model="step" value="{{step}}">
 
-		<div v-for="player in players" transition="fade">
-			<template v-if="$index+1 < 4">
-				<span class="rank{{$index+1}}"> {{ $index+1 | rank }} </span>
-			</template>
-			<template v-else> {{ $index+1 | rank }} </template>
-			| {{ player.name | capitalize }}  : {{ player.points }}
-			<button v-on:click="addPoints($index)"> + </button> 
-			<button v-on:click="reducePoints($index)"> - </button> 
-			<button v-on:click="resetScore($index)"> Reset </button>
-			<button v-on:click="removePlayer($index)"> Remove </button>
+		<div class="container">
+		    <table class="table table-striped">
+		        <thead v-show="players.length">
+					<tr>
+						<th>Rank</th>
+						<th>Name</th>
+						<th>Points</th>
+						<th>Add points</th>
+						<th>Substract points</th>
+						<th>Reset</th>
+						<th>Remove</th>
+					</tr>
+		        </thead>
+		        <tbody>
+		            <tr v-for="player in players" transition="fade">
+						<td v-if="$index+1 < 4" class="rank{{$index+1}}"> {{ $index+1 | rank }} </td>
+						<td v-else > {{ $index+1 | rank }} </td>
+						<td>{{ player.name | capitalize }}</td>
+						<td>{{ player.points }}</td>
+						<td><button v-on:click="addPoints($index)" class="btn btn-default"><span class="glyphicon glyphicon-plus-sign"></span></button></td> 
+						<td><button v-on:click="reducePoints($index)" class="btn btn-default"><span class="glyphicon glyphicon-minus-sign"></span></button></td> 
+						<td><button v-on:click="resetScore($index)" class="btn btn-default"><span class="glyphicon glyphicon-repeat"></span></button></td>
+						<td><button v-on:click="removePlayer($index)" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></button></td>
+					</tr>
+		        </tbody>
+		    </table>
 		</div>
 
 		<div>
-			<button v-on:click="resetAllScore()"> Reset scores </button>
-			<button v-on:click="reset()"> Reset all </button>
+			<button v-on:click="resetAllScore()" class="btn btn-default"> Reset scores </button>
+			<button v-on:click="reset()" class="btn btn-default"> Reset all </button>
 		</div>
 
 		<h4 v-show="history.length">Game's History</h4>
