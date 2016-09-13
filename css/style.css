@@ -5,11 +5,7 @@
 #step{width: 173px;}
 table{text-align: left;}
 td{vertical-align: middle !important;}
-#history{
-	height: auto;
-  	max-height: 180px;
-  	overflow: auto;
-}
+#history{margin-top: 14px;}
 #history li{list-style-type: none;}
 .fade-transition{
   	transition: all 0.5s;
@@ -20,3 +16,4 @@ td{vertical-align: middle !important;}
 .rank1{color: #FFD700;}
 .rank2{color: #C0C0C0;}
 .rank3{color: #CD7F32;}
+footer a:hover{color: black !important;}
