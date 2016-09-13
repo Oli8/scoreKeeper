@@ -46,8 +46,8 @@
 		<input id="step" type="number" v-model="step" value="{{step}}">
 
 		<div class="container">
-		    <table class="table table-striped">
-		        <thead v-show="players.length">
+			<table class="table table-striped">
+				<thead v-show="players.length">
 					<tr>
 						<th>Rank</th>
 						<th>Name</th>
@@ -57,9 +57,9 @@
 						<th>Reset</th>
 						<th>Remove</th>
 					</tr>
-		        </thead>
-		        <tbody>
-		            <tr v-for="player in players" transition="fade">
+				</thead>
+				<tbody>
+					<tr v-for="player in players" transition="fade">
 						<td v-if="$index+1 < 4" class="rank{{$index+1}}"> {{ $index+1 | rank }} </td>
 						<td v-else > {{ $index+1 | rank }} </td>
 						<td>{{ player.name | capitalize }}</td>
@@ -69,8 +69,8 @@
 						<td><button v-on:click="resetScore($index)" class="btn btn-default"><span class="glyphicon glyphicon-repeat"></span></button></td>
 						<td><button v-on:click="removePlayer($index)" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></button></td>
 					</tr>
-		        </tbody>
-		    </table>
+				</tbody>
+			</table>
 		</div>
 
 		<div>
