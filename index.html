@@ -24,7 +24,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">ScoreKeeper</a>
+				<a class="navbar-brand" href="index.html">ScoreKeeper</a>
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav navbar-right">
@@ -38,12 +38,19 @@
 		<div class="alert alert-warning" v-show="warning" transition="fade">
 			<span class="glyphicon glyphicon-warning-sign"></span> {{ warning }}
 		</div>
-		<label for="newPlayer">Add a player : </label>
-		<input id="newPlayer" type="text" v-model="name" v-on:keyup.enter="addPlayer()" autofocus>
-		<button v-on:click="addPlayer()" class="btn btn-default">Add</button><br/>
-		
-		<label for="step">Step : </label>
-		<input id="step" type="number" v-model="step" value="{{step}}">
+		<div class="alert alert-success" v-show="gameOver" transition="fade">
+			<span class="glyphicon glyphicon-info-sign"></span> {{ winner | capitalize }} has won !
+		</div>
+		<button v-on:click="refresh()" v-show="gameOver" class="btn btn-default"><span class="glyphicon glyphicon-repeat"></span> New game</button>
+
+		<div v-show="!gameOver">
+			<label for="newPlayer">Add a player : </label>
+			<input id="newPlayer" type="text" v-model="name" v-on:keyup.enter="addPlayer()" autofocus>
+			<button v-on:click="addPlayer()" class="btn btn-default">Add</button><br/>
+
+			<label for="step">Step : </label>
+			<input id="step" type="number" v-model="step" value="{{step}}">
+		</div>
 
 		<div class="container">
 			<table class="table table-striped">
@@ -52,10 +59,10 @@
 						<th>Rank</th>
 						<th>Name</th>
 						<th>Points</th>
-						<th>Add points</th>
-						<th>Substract points</th>
-						<th>Reset</th>
-						<th>Remove</th>
+						<th v-show="!gameOver">Add points</th>
+						<th v-show="!gameOver">Substract points</th>
+						<th v-show="!gameOver">Reset</th>
+						<th v-show="!gameOver">Remove</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -64,18 +71,19 @@
 						<td v-else> {{ $index+1 | rank }} </td>
 						<td>{{ player.name | capitalize }}</td>
 						<td>{{ player.points }}</td>
-						<td><button v-on:click="addPoints($index)" class="btn btn-default"><span class="glyphicon glyphicon-plus-sign"></span></button></td> 
-						<td><button v-on:click="reducePoints($index)" class="btn btn-default"><span class="glyphicon glyphicon-minus-sign"></span></button></td> 
-						<td><button v-on:click="resetScore($index)" class="btn btn-default"><span class="glyphicon glyphicon-repeat"></span></button></td>
-						<td><button v-on:click="removePlayer($index)" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></button></td>
+						<td v-show="!gameOver"><button v-on:click="addPoints($index)" class="btn btn-default"><span class="glyphicon glyphicon-plus-sign"></span></button></td> 
+						<td v-show="!gameOver"><button v-on:click="reducePoints($index)" class="btn btn-default"><span class="glyphicon glyphicon-minus-sign"></span></button></td> 
+						<td v-show="!gameOver"><button v-on:click="resetScore($index)" class="btn btn-default"><span class="glyphicon glyphicon-repeat"></span></button></td>
+						<td v-show="!gameOver"><button v-on:click="removePlayer($index)" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></button></td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
 
-		<div>
+		<div v-show="players.length && !gameOver">
 			<button v-on:click="resetAllScore()" class="btn btn-default"> Reset scores </button>
 			<button v-on:click="reset()" class="btn btn-default"> Reset all </button>
+			<button v-on:click="endGame()" class="btn btn-default"> End game </button>
 		</div>
 
 		<h4 v-show="history.length">Game's History</h4>

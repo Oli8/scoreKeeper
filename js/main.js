@@ -7,7 +7,9 @@ new Vue({
         playerCount: 1,
         history: [],
         historyName: '',
-        warning: ''
+        warning: '',
+        gameOver: false,
+        winner: '',
     },
     methods: {
         addPlayer: function() {
@@ -78,6 +80,16 @@ new Vue({
             this.players.sort(function(a, b) {
                 return a.points < b.points;
             });
+        },
+
+        endGame: function() {
+            this.sortRank();
+            this.winner = this.players[0].name;
+            this.gameOver = true;
+        },
+
+        refresh: function() {
+            location.reload();
         }
     },
     filters: {
