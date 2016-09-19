@@ -41,7 +41,8 @@
 		<div class="alert alert-success" v-show="gameOver" transition="fade">
 			<span class="glyphicon glyphicon-info-sign"></span> {{ winner | capitalize }} has won !
 		</div>
-		<button v-on:click="refresh()" v-show="gameOver" class="btn btn-default"><span class="glyphicon glyphicon-repeat"></span> New game</button>
+		<button v-on:click="refresh(false)" v-show="gameOver" class="btn btn-default"><span class="glyphicon glyphicon-repeat"></span> New game</button>
+		<button v-on:click="refresh(true)" v-show="gameOver" class="btn btn-default"><span class="glyphicon glyphicon-repeat"></span> Replay with the same players</button>
 
 		<div v-show="!gameOver">
 			<label for="newPlayer">Add a player : </label>

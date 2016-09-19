@@ -88,8 +88,13 @@ new Vue({
             this.gameOver = true;
         },
 
-        refresh: function() {
-            location.reload();
+        refresh: function(samePlayers) {
+            if(samePlayers) {
+                this.resetAllScore();
+                this.history = [];
+                this.gameOver = false;
+            }
+            else location.reload();
         }
     },
     filters: {
