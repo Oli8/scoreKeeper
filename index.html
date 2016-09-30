@@ -50,7 +50,12 @@
 			<button v-on:click="addPlayer()" class="btn btn-default">Add</button><br/>
 
 			<label for="step">Step : </label>
-			<input id="step" type="number" v-model="step" value="{{step}}">
+			<input id="step" type="number" v-model="step" value="{{step}}"><br/>
+			<div id="finishWrap">
+				<label for="finishLine">Finish line : </label>
+				<input type="checkbox" v-model="finishLine.enable">
+				<input type="text" id="finishLine" v-model="finishLine.value">
+			</div>
 		</div>
 
 		<div class="container">

@@ -3,6 +3,10 @@
 	margin-top: 100px;
 }
 #step{width: 173px;}
+#finishWrap{
+	position: relative;
+	right: 28px;
+}
 table{text-align: left;}
 td{vertical-align: middle !important;}
 #history{margin-top: 14px;}

@@ -5,6 +5,7 @@ new Vue({
         name: '',
         players: [],
         playerCount: 1,
+        finishLine: {enable: false, value: 0},
         history: [],
         historyName: '',
         warning: '',
@@ -103,6 +104,16 @@ new Vue({
             if(['11', '12', '13'].indexOf(v.substr(-2)) !== -1)
                 return v + 'th';
             return v + ({1: 'st',2: 'nd',3: 'rd'}[v.substr(-1)] || 'th');
+        }
+    },
+    watch: {
+        'players': function(val, oldVal) {
+            if(this.finishLine.enable){
+                if(this.players[0].points >= this.finishLine.value){
+                    this.winner = this.players[0].name;
+                    this.gameOver = true;
+                }
+            }
         }
     }
 });
