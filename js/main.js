@@ -99,6 +99,7 @@ new Vue({
                 this.resetAllScore();
                 this.history = [];
                 this.gameOver = false;
+                localStorage.setItem('sKPlayers', JSON.stringify(this.players));
             }
             else location.reload();
         }
@@ -113,11 +114,8 @@ new Vue({
     },
     watch: {
         'players': function(val, oldVal) {
-            if(this.finishLine.enable){
-                if(this.players[0].points >= this.finishLine.value){
-                    this.winner = this.players[0].name;
-                    this.gameOver = true;
-                }
+            if(this.finishLine.enable && this.players[0].points >= this.finishLine.value){
+                this.endGame();
             }
             if(!this.gameOver)
                 localStorage.setItem('sKPlayers', JSON.stringify(this.players));
