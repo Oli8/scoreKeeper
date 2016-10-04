@@ -12,6 +12,10 @@ new Vue({
         gameOver: false,
         winner: '',
     },
+    ready: function() {
+        if(localStorage.getItem('sKPlayers'))
+            this.players = JSON.parse(localStorage.getItem('sKPlayers'));
+    },
     methods: {
         addPlayer: function() {
             var name = this.name || 'player' + this.playerCount;
@@ -87,6 +91,7 @@ new Vue({
             this.sortRank();
             this.winner = this.players[0].name;
             this.gameOver = true;
+            localStorage.removeItem('sKPlayers');
         },
 
         refresh: function(samePlayers) {
@@ -114,6 +119,8 @@ new Vue({
                     this.gameOver = true;
                 }
             }
+            if(!this.gameOver)
+                localStorage.setItem('sKPlayers', JSON.stringify(this.players));
         }
     }
 });
