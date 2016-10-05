@@ -114,9 +114,8 @@ new Vue({
     },
     watch: {
         'players': function(val, oldVal) {
-            if(this.finishLine.enable && this.players[0].points >= this.finishLine.value){
+            if(this.finishLine.enable && this.players[0].points >= this.finishLine.value)
                 this.endGame();
-            }
             if(!this.gameOver)
                 localStorage.setItem('sKPlayers', JSON.stringify(this.players));
         }
