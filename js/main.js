@@ -37,13 +37,13 @@ new Vue({
 
         addPoints: function(index) {
             this.addHistory(this.players[index].name + ' has won ' + this.step + ' points');
-            this.players[index].points += parseInt(this.step);
+            this.players[index].points += this.step;
             this.updateRank();
         },
 
         reducePoints: function(index) {
             this.addHistory(this.players[index].name + ' has lost ' + this.step + ' points.');
-            this.players[index].points -= parseInt(this.step);
+            this.players[index].points -= this.step;
             this.updateRank();
         },
 
