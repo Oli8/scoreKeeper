@@ -49,7 +49,7 @@ new Vue({
 
         resetScore: function(index) {
             this.players[index].points = 0;
-            this.addHistory(this.players[index].name + "'s score has been reseted.");
+            this.addHistory(this.players[index].name + "'s score has been reset.");
             this.updateRank();
         },
 
@@ -57,7 +57,7 @@ new Vue({
             this.players.map(function(v) {
                 return v.points = 0;
             });
-            this.addHistory("Scores have been reseted.");
+            this.addHistory("Scores have been reset.");
         },
 
         reset: function() {
