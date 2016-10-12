@@ -93,7 +93,7 @@
 		</div>
 
 		<h4 v-show="history.length">Game's History</h4>
-		<select v-show="players.length" v-model="historyName" class="form-control">
+		<select v-show="players.length" v-model="historyName" class="form-control parse-history">
 			<option value="" selected>All</option>
 			<option v-for="player in players" value="{{player.name}}">{{ player.name | capitalize }}</option>
 		</select>

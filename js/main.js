@@ -13,8 +13,10 @@ new Vue({
         winner: '',
     },
     ready: function() {
-        if(localStorage.getItem('sKPlayers'))
+        if(localStorage.getItem('sKPlayers')){
             this.players = JSON.parse(localStorage.getItem('sKPlayers'));
+            this.history = JSON.parse(localStorage.getItem('sKHistory'));
+        }
     },
     methods: {
         addPlayer: function() {
@@ -92,6 +94,7 @@ new Vue({
             this.winner = this.players[0].name;
             this.gameOver = true;
             localStorage.removeItem('sKPlayers');
+            localStorage.removeItem('sKHistory');
         },
 
         refresh: function(samePlayers) {
@@ -109,7 +112,7 @@ new Vue({
             v = '' + v;
             if(['11', '12', '13'].indexOf(v.substr(-2)) !== -1)
                 return v + 'th';
-            return v + ({1: 'st',2: 'nd',3: 'rd'}[v.substr(-1)] || 'th');
+            return v + ({1: 'st', 2: 'nd', 3: 'rd'}[v.substr(-1)] || 'th');
         }
     },
     watch: {
@@ -118,6 +121,11 @@ new Vue({
                 this.endGame();
             if(!this.gameOver)
                 localStorage.setItem('sKPlayers', JSON.stringify(this.players));
+        },
+
+        'history': function(val, oldVal) {
+            if(!this.gameOver)
+                localStorage.setItem('sKHistory', JSON.stringify(this.history));
         }
     }
 });
