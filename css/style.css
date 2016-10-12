@@ -2,6 +2,7 @@
 	text-align: center;
 	margin-top: 100px;
 }
+.header-sources{display: none !important;}
 #step{width: 173px;}
 #finishWrap{
 	position: relative;
@@ -22,3 +23,8 @@ td{vertical-align: middle !important;}
 .rank3{color: #CD7F32;}
 select.parse-history{margin-top: 10px;}
 footer a:hover{color: black !important;}
+
+@media (max-height: 700px){
+	footer{display: none !important;}
+	.header-sources{display: block !important;}
+}
